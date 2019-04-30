@@ -52,19 +52,7 @@ public class MoneyPerfTest {
 		logger.info("Leaving setUp");
 	}
 	
-	@Test 
-    @PerfTest(invocations = 1000, threads = 20)
-    @Required(max = 120, average = 30)
-	public void testBagMultiply() throws Exception {
-		logger.info("Starting testBagMultiply");
-		// {[12 CHF][7 USD]} *2 == {[24 CHF][14 USD]}
-		IMoney expected= MoneyBag.create(new Money(24, "CHF"), new Money(14, "USD"));
-		assertEquals(expected, fMB1.multiply(2)); 
-		assertEquals(fMB1, fMB1.multiply(1));
-		assertTrue(fMB1.multiply(0).isZero());
-		Thread.sleep(121);
-		logger.debug("Finishing testBagMultiply");
-	}
+	
 	@Test public void testBagNegate() {
 		// {[12 CHF][7 USD]} negate == {[-12 CHF][-7 USD]}
 		IMoney expected= MoneyBag.create(new Money(-12, "CHF"), new Money(-7, "USD"));
